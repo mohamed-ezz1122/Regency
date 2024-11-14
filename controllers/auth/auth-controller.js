@@ -19,7 +19,7 @@ const registerUser = async (req, res) => {
       });
 // console.log(process.env.SALTE_ROUND);
 
-    const hashPassword = bcrypt.hashSync(password,+process.env.SALTE_ROUND)
+    const hashPassword = bcrypt.hashSync(password,+process.env.SALTE_ROUND||12)
     const newUser = new User({
       userName,
       email,
@@ -69,7 +69,7 @@ const loginUser = async (req, res) => {
         email: checkUser.email,
         userName: checkUser.userName,
       },
-      process.env.SIGNTURE,
+      "m,mbkjbjk",
       { expiresIn: "60m" }
     );
 
@@ -111,7 +111,7 @@ const authMiddleware = async (req, res, next) => {
     });
 
   try {
-    const decoded = jwt.verify(token, process.env.SIGNTURE);
+    const decoded = jwt.verify("m,mbkjbjk");
     req.user = decoded;
     next();
   } catch (error) {
